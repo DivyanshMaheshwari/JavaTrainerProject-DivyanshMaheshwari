@@ -16,4 +16,4 @@ COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-DwebAllowOthers=true", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java -cp app.jar org.h2.tools.Server -tcp -tcpAllowOthers & java -DwebAllowOthers=true -jar app.jar"]
